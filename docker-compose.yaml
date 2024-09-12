@@ -5,9 +5,19 @@ services:
     image: mongo:6.0.8
     ports:
       - "27027:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - hyper-task-manager-network
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     container_name: hyper-mongo
     env_file: ['.env']
+
+volumes:
+  mongo-data:
+
+networks:
+  hyper-task-manager-network:
 
