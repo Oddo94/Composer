@@ -13,7 +13,21 @@ services:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     container_name: hyper-mongo
-    env_file: ['.env']
+    env_file:
+    - .env
+
+  hyper-service:
+    container_name: hyper-task-manager
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_HOST_NAME: mongodb
+      MONGO_PORT_NUMBER: 27017
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile
 
 volumes:
   mongo-data:
