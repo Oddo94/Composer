@@ -17,6 +17,10 @@ services:
     - .env
 
   hyper-service:
+    ports:
+      - "8000:8000"
+    networks:
+      - hyper-task-manager-network
     container_name: hyper-task-manager
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
@@ -28,6 +32,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    depends_on:
+      - mongodb
 
 volumes:
   mongo-data:
