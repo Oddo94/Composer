@@ -16,7 +16,7 @@ services:
     env_file:
     - .env
 
-  hyper-service:
+  app:
     ports:
       - "8000:8000"
     networks:
