@@ -6,13 +6,13 @@ services:
     ports:
       - "27027:27017"
     volumes:
-      - mongo-data:/data/db
+      - task-manager-data:/data/db
     networks:
-      - hyper-task-manager-network
+      - task-manager-network
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
-    container_name: hyper-mongo
+    container_name: task-manager-db
     env_file:
     - .env
 
@@ -20,8 +20,8 @@ services:
     ports:
       - "8000:8000"
     networks:
-      - hyper-task-manager-network
-    container_name: hyper-task-manager
+      - task-manager-network
+    container_name: task-manager-app
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
@@ -36,8 +36,8 @@ services:
       - mongodb
 
 volumes:
-  mongo-data:
+  task-manager-data:
 
 networks:
-  hyper-task-manager-network:
+  task-manager-network:
 
